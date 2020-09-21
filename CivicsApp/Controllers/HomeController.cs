@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using VotingApp.Models;
+using CivicsApp.Models;
 
-namespace VotingApp.Controllers
+namespace CivicsApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -24,6 +24,11 @@ namespace VotingApp.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult HelloWorld()
         {
             return View();
         }

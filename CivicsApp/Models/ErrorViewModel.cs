@@ -1,6 +1,6 @@
 using System;
 
-namespace VotingApp.Models
+namespace CivicsApp.Models
 {
     public class ErrorViewModel
     {

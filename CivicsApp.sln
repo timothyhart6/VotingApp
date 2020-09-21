@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingApp", "VotingApp\VotingApp.csproj", "{1456A238-7D60-481C-A815-41B6DE9EF483}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivicsApp", "VotingApp\CivicsApp.csproj", "{1456A238-7D60-481C-A815-41B6DE9EF483}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
