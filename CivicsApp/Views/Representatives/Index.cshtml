@@ -6,47 +6,43 @@
 
 <h2>List of Representatives</h2>
 
-<p>This is coming from the Representatives View/Index.cshtml</p>
+<p>This is coming from Views/Representatives/Index.cshtml</p>
 
 <table class="table">
+
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.Results[0].Members[0].State)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.Results[0].Members[0].District)
             </th>
-
-</thead>
-
-    <div>
-        <h4>Testing Database connection(expect last name = "Johnson"):</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
-        </dl>
-    </div>
-
-    @*<ul>
-            @for (int i = 0; i < (int)ViewData["NumTimes"]; i++)
-            {
-                <li>@ViewData["Message"]</li>
-            }
-        </ul>*@
-    @*<tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
-                    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Results[0].Members[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Results[0].Members[0].LastName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Results[0].Members)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.District)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.LastName)
+                </td>
+            </tr>
         }
-            </tbody>*@
+    </tbody>
 </table>

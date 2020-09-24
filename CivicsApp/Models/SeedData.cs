@@ -21,25 +21,25 @@ namespace CivicsApp.Models
                 }
 
                 context.Representative.AddRange(
-                    new Representative
-                    {
-                        LastName = "Johnson"
-                    },
+                    //new Representative
+                    //{
+                    //    LastName = "Johnson"
+                    //},
 
-                    new Representative
-                    {
-                        LastName = "Smith"
-                    },
+                    //new Representative
+                    //{
+                    //    LastName = "Smith"
+                    //},
 
-                    new Representative
-                    {
-                        LastName = "Jackson"
-                    },
+                    //new Representative
+                    //{
+                    //    LastName = "Jackson"
+                    //},
 
-                    new Representative
-                    {
-                        LastName = "Armstrong"
-                    }
+                    //new Representative
+                    //{
+                    //    LastName = "Armstrong"
+                    //}
                 );
                 context.SaveChanges();
             }
