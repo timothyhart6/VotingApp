@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Results[0].Members)
+        @foreach (var item in Model.Results[0].Members.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))
         {
             <tr>
                 <td>
