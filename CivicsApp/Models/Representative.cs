@@ -31,7 +31,7 @@ namespace CivicsApp.Models
 
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 
-    public class Member
+    public class Member : IRepresentative
 
     {
 
@@ -41,9 +41,9 @@ namespace CivicsApp.Models
 
 
 
-        [JsonProperty("title")]
+        //[JsonProperty("title")]
 
-        public string Title { get; set; }
+        //public string Title { get; set; }
 
 
 
@@ -59,9 +59,9 @@ namespace CivicsApp.Models
 
 
 
-        [JsonProperty("first_name")]
+        //[JsonProperty("first_name")]
 
-        public string FirstName { get; set; }
+        //public string FirstName { get; set; }
 
 
 
@@ -71,9 +71,9 @@ namespace CivicsApp.Models
 
 
 
-        [JsonProperty("last_name")]
+        //[JsonProperty("last_name")]
 
-        public string LastName { get; set; }
+        //public string LastName { get; set; }
 
 
 
@@ -275,9 +275,9 @@ namespace CivicsApp.Models
 
 
 
-        [JsonProperty("district")]
+        //[JsonProperty("district")]
 
-        public string District { get; set; }
+        //public string District { get; set; }
 
 
 
