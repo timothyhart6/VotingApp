@@ -18,23 +18,21 @@ namespace CivicsApp.Controllers
     { 
         private readonly RepresentativeContext _context;
 
+        private IRepresentativeService _representativeService;
+
+    
+
         public RepresentativesController(RepresentativeContext context)
         {
             _context = context;
+            _representativeService = new RepresentativeService();
         }
+
 
         // GET: /Representatives>/
         public async Task<IActionResult> Index()
         {
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
-            var membersOfHouseUrl = "https://api.propublica.org/congress/v1/116/house/members.json";
-
-            var results = await httpClient.GetAsync(membersOfHouseUrl);
-            var stringResult = await results.Content.ReadAsStringAsync();
-            Representative myDeserializedClass = JsonConvert.DeserializeObject<Representative>(stringResult);
-
-            return View(myDeserializedClass);
+            return View(await _representativeService.ListRepresentativesAsync());
         }
 
         //id = 1;
@@ -44,9 +42,6 @@ namespace CivicsApp.Controllers
         //{
         //    return NotFound();
         //}
-
-
-
 
         //// GET: Representative/Details/5
         //public async Task<IActionResult> Details(int? id)
