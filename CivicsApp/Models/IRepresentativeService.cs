@@ -7,5 +7,7 @@ namespace CivicsApp.Models
     public interface IRepresentativeService
     {
         public Task<Representative> ListRepresentativesAsync();
+
+        public Task<Representative> ListStateRepresentativesAsync(String state);
     }
 }

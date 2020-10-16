@@ -32,6 +32,11 @@ namespace CivicsApp.Models
         [JsonProperty("district")]
         public string District { get; set; }
 
+        //internal void Remove(Result result)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         //[JsonPropertyName("id")]
         //public string Id { get; set; }
 

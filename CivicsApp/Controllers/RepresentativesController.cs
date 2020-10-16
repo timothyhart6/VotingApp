@@ -35,30 +35,20 @@ namespace CivicsApp.Controllers
             return View(await _representativeService.ListRepresentativesAsync());
         }
 
-        //id = 1;
-        //var representative = await _context.Representative
-        //    .FirstOrDefaultAsync(m => m.Id == id);
-        //if (representative == null)
-        //{
-        //    return NotFound();
-        //}
+        /* USED FOR DATABASE RETRIEVAL
+        id = 1;
+        var representative = await _context.Representative
+            .FirstOrDefaultAsync(m => m.Id == id);
+        if (representative == null)
+        {
+            return NotFound();
+        }
+        */
 
-        //// GET: Representative/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var representative = await _context.Representative
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (representative == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(representative);
-        //}
+        //GET: Representative/State/OH
+        public async Task<IActionResult> State(String state)
+        {
+            return View(await _representativeService.ListStateRepresentativesAsync(state));
+        }
     }
 }
