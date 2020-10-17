@@ -10,12 +10,9 @@
 
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Results[0].Members[0].State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Results[0].Members[0].District)
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Results[0].District)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].FirstName)
             </th>
@@ -25,20 +22,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Results[0].Members.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))
+        @*@foreach (var item in Model.Results)*@
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.State)
-                </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(ModelItem => item.District)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(ModelItem => Model.Results[0].Members[0].FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(ModelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(ModelItem => item.LastName)
+                    @Html.DisplayFor(ModelItem => Model.Results[0].Members[0].LastName)
                 </td>
             </tr>
         }

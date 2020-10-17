@@ -8,6 +8,7 @@
   <ItemGroup>
     <Folder Include="Views\Representatives\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Senators\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />

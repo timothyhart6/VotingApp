@@ -26,11 +26,11 @@ namespace CivicsApp.Models
         //[JsonProperty("suffix")]
         //public string Suffix { get; set; }
 
-        [JsonProperty("state")]
-        public string State { get; set; }
+        //[JsonProperty("state")]
+        //public string State { get; set; }
 
-        [JsonProperty("district")]
-        public string District { get; set; }
+        //[JsonProperty("district")]
+        //public string District { get; set; }
 
         //internal void Remove(Result result)
         //{

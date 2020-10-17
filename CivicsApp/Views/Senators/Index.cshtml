@@ -1,0 +1,41 @@
+﻿@model CivicsApp.Models.Senator
+
+@{
+    ViewData["Title"] = "Senators";
+}
+
+<h2>List of Senators</h2>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SenateResults[0].SenateMembers[0].State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenateResults[0].SenateMembers[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenateResults[0].SenateMembers[0].LastName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SenateResults[0].SenateMembers.OrderBy(s => s.State))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.LastName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
