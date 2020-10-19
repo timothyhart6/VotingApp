@@ -1,23 +1,22 @@
 ﻿@model CivicsApp.Models.Representative
 
 @{
-    ViewData["Title"] = "Representatives";
+    ViewData["Title"] = "Representative";
 }
 
 <h2>List of Representatives</h2>
 
-<p>This is coming from Views/Representatives/Index.cshtml</p>
 
 <table class="table">
 
     <thead>
         <tr>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].State)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].District)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].FirstName)
             </th>
@@ -27,15 +26,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Results[0].Members)//.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))
+        @foreach (var item in Model.Results[0].Members.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))
         {
             <tr>
-                @*<td>
+                <td>
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
                     @Html.DisplayFor(ModelItem => item.District)
-                </td>*@
+                </td>
                 <td>
                     @Html.DisplayFor(ModelItem => item.FirstName)
                 </td>

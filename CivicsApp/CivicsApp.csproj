@@ -9,6 +9,10 @@
     <Folder Include="Views\Representatives\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Senators\" />
+    <Folder Include="Models\Representatives\" />
+    <Folder Include="Models\Senators\" />
+    <Folder Include="Models\Representatives\CompleteListOfReps\" />
+    <Folder Include="Models\Representatives\SpecificRep\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
