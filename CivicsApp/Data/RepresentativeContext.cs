@@ -11,6 +11,6 @@ namespace CivicsApp.Data
         {
         }
 
-        public DbSet<Representative> Representative { get; set; }
+        public DbSet<ListOfHouseMembers> Representative { get; set; }
     }
 }

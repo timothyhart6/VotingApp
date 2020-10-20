@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CivicsApp.Models.Representatives.SpecificRep
 {
-    public class SpecificRepresentative : ISpecificRepresentative
+    public class Results : ISpecificRepresentative
     {
 
         [JsonProperty("first_name")]
@@ -14,7 +14,7 @@ namespace CivicsApp.Models.Representatives.SpecificRep
         public string LastName { get; set; }
     }
 
-    public class Root
+    public class SpecificRepresentative
     {
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -23,6 +23,6 @@ namespace CivicsApp.Models.Representatives.SpecificRep
         public string Copyright { get; set; }
 
         [JsonProperty("results")]
-        public List<SpecificRepresentative> Results { get; set; }
+        public List<Results> Results { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace CivicsApp.Controllers
     { 
         private readonly RepresentativeContext _context;
         private RepresentativeService _representativeService;
+        
 
         public RepresentativesController(RepresentativeContext context)
         {
@@ -43,9 +44,9 @@ namespace CivicsApp.Controllers
         */
 
         //GET: Representative/State/OH
-        public async Task<IActionResult> State(String state)
-        {
-            return View(await _representativeService.ListStateRepresentativesAsync(state));
-        }
+        //public async Task<IActionResult> State(String state)
+        //{
+        //    return View(await _representativeService.ListStateRepresentativesAsync(state));
+        //}
     }
 }

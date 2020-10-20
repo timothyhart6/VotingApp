@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CivicsApp.Models.Representatives.CompleteListOfReps;
 
 namespace CivicsApp.Models
 {
     public interface IRepresentativeService
     {
-        public Task<Representative> ListRepresentativesAsync();
+        public Task<List<Representative>> ListRepresentativesAsync();
 
-        public Task<Representative> ListStateRepresentativesAsync(String state);
+        public Task<ListOfHouseMembers> ListStateRepresentativesAsync(String state);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model CivicsApp.Models.Representative
+﻿@model CivicsApp.Models.Representatives.CompleteListOfReps.Representative
 
 @{
     ViewData["Title"] = "Representative";
@@ -11,36 +11,36 @@
 
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].State)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].District)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Results[0].Members[0].FirstName)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.Results[0].Members[0].LastName)
-            </th>
+            </th>*@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Results[0].Members.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))
+        @*@foreach (var item in Model)//.Results[0].Members.OrderBy(s => s.State).ThenBy(d => d.District.Length).ThenBy(d => d.District))*@
         {
             <tr>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
                     @Html.DisplayFor(ModelItem => item.District)
-                </td>
-                <td>
-                    @Html.DisplayFor(ModelItem => item.FirstName)
-                </td>
-                <td>
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(ModelItem => Model.FirstName)
+                </td>*@
+                @*<td>
                     @Html.DisplayFor(ModelItem => item.LastName)
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>

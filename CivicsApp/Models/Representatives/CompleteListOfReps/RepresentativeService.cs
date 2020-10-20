@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CivicsApp.Models.Representatives.CompleteListOfReps;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -9,7 +10,9 @@ namespace CivicsApp.Models
 {
     public class RepresentativeService : IRepresentativeService
     {
-        public async Task<Representative> ListRepresentativesAsync()
+        private RepresentativeAdapter adapter = new RepresentativeAdapter();
+        
+        public async Task<List<Representative>> ListRepresentativesAsync()
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
@@ -17,11 +20,12 @@ namespace CivicsApp.Models
 
             var results = await httpClient.GetAsync(membersOfHouseUrl);
             var stringResult = await results.Content.ReadAsStringAsync();
-            var myDeserializedClass = JsonConvert.DeserializeObject<Representative>(stringResult);
-            return myDeserializedClass;
+            var myDeserializedClass = JsonConvert.DeserializeObject<ListOfHouseMembers>(stringResult);
+           
+            return adapter.ReturnListOfHouseMembers(myDeserializedClass);
         }
 
-        public async Task<> ListStateRepresentativesAsync(String state)
+        public async Task<ListOfHouseMembers> ListStateRepresentativesAsync(String state)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
@@ -29,7 +33,7 @@ namespace CivicsApp.Models
             //var membersOfHouseUrl = "https://api.propublica.org/congress/v1/116/house/members.json";
             var results = await httpClient.GetAsync(membersOfHouseUrl);
             var stringResult = await results.Content.ReadAsStringAsync();
-            var myDeserializedClass = JsonConvert.DeserializeObject<pr>(stringResult);
+            var myDeserializedClass = JsonConvert.DeserializeObject<ListOfHouseMembers>(stringResult);
 
             for (int i = 0; i < myDeserializedClass.Results[0].Members.Count;)
 
