@@ -11,9 +11,11 @@ namespace CivicsApp.Models
     public class RepresentativeService : IRepresentativeService
     {
         private RepresentativeAdapter adapter = new RepresentativeAdapter();
-        
+
+
         public async Task<List<Representative>> ListRepresentativesAsync()
         {
+            
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
             var membersOfHouseUrl = "https://api.propublica.org/congress/v1/116/house/members.json";
@@ -21,7 +23,8 @@ namespace CivicsApp.Models
             var results = await httpClient.GetAsync(membersOfHouseUrl);
             var stringResult = await results.Content.ReadAsStringAsync();
             var myDeserializedClass = JsonConvert.DeserializeObject<ListOfHouseMembers>(stringResult);
-           
+            //List<Representative> reps = new List<Representative>();
+            //reps = await Task.Run(() => adapter.ReturnListOfHouseMembers(myDeserializedClass));
             return adapter.ReturnListOfHouseMembers(myDeserializedClass);
         }
 

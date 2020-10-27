@@ -17,7 +17,7 @@ namespace CivicsApp.Controllers
     public class RepresentativesController : Controller
     { 
         private readonly RepresentativeContext _context;
-        private RepresentativeService _representativeService;
+        private IRepresentativeService _representativeService;
         
 
         public RepresentativesController(RepresentativeContext context)
