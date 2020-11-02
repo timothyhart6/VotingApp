@@ -23,9 +23,10 @@ namespace CivicsApp.Models
             var results = await httpClient.GetAsync(membersOfHouseUrl);
             var stringResult = await results.Content.ReadAsStringAsync();
             var myDeserializedClass = JsonConvert.DeserializeObject<ListOfHouseMembers>(stringResult);
-            //List<Representative> reps = new List<Representative>();
+            List<Representative> reps = new List<Representative>();
+            reps = adapter.ReturnListOfHouseMembers(myDeserializedClass);
             //reps = await Task.Run(() => adapter.ReturnListOfHouseMembers(myDeserializedClass));
-            return adapter.ReturnListOfHouseMembers(myDeserializedClass);
+            return reps;
         }
 
         public async Task<ListOfHouseMembers> ListStateRepresentativesAsync(String state)

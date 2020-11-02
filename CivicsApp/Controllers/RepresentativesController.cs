@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 namespace CivicsApp.Controllers
 {
     public class RepresentativesController : Controller
-    { 
+    {
         private readonly RepresentativeContext _context;
         private IRepresentativeService _representativeService;
         
