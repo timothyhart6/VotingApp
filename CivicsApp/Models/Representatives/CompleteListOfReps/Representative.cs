@@ -3,11 +3,9 @@ namespace CivicsApp.Models.Representatives.CompleteListOfReps
 {
     public class Representative
     {
-        public Representative(string firstName)
-        {
-            FirstName = firstName;
-        }
-
         public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string State { get; set; }
+        public string District { get; set; }
     }
 }

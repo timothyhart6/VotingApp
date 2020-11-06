@@ -13,6 +13,9 @@
     <Folder Include="Models\Senators\" />
     <Folder Include="Models\Representatives\CompleteListOfReps\" />
     <Folder Include="Models\Representatives\SpecificRep\" />
+    <Folder Include="Models\Representatives\CompleteListOfReps\ServiceLayer\" />
+    <Folder Include="Models\Representatives\CompleteListOfReps\ApiClasses\" />
+    <Folder Include="Models\Representatives\CompleteListOfReps\Adapter\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
