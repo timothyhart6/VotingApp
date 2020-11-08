@@ -1,0 +1,47 @@
+﻿@model CivicsApp.Models.Representatives.CompleteListOfReps.Representative
+
+@{
+    ViewData["Title"] = "Representative";
+}
+
+<h2>Representative</h2>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                District
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => Model.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => Model.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => Model.District)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

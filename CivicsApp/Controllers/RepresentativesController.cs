@@ -33,6 +33,11 @@ namespace CivicsApp.Controllers
             return View(await _representativeService.ListRepresentativesAsync());
         }
 
+        public async Task<IActionResult> Representative(String MemberId)
+        {
+            return View(await _representativeService.DisplayRepresentative(MemberId));
+        }
+
         /* USED FOR DATABASE RETRIEVAL
         id = 1;
         var representative = await _context.Representative
@@ -44,9 +49,9 @@ namespace CivicsApp.Controllers
         */
 
         //GET: Representative/State/OH
-        //public async Task<IActionResult> State(String state)
-        //{
-        //    return View(await _representativeService.ListStateRepresentativesAsync(state));
-        //}
+        public async Task<IActionResult> State(String state)
+        {
+            return View(await _representativeService.ListStateRepresentativesAsync(state));
+        }
     }
 }
