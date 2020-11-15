@@ -25,6 +25,7 @@ namespace CivicsApp.Models.Representatives.CompleteListOfReps
             Representative.LastName = ApiRepresentative.LastName;
             Representative.State = ApiRepresentative.Roles[0].State;
             Representative.District = ApiRepresentative.Roles[0].District;
+            Representative.TwitterAccount = ApiRepresentative.TwitterAccount;
             return Representative;
         }
     }

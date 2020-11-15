@@ -1,14 +1,16 @@
 ﻿@model CivicsApp.Models.Representatives.CompleteListOfReps.Representative
 
 @{
-    ViewData["Title"] = "Representative";
+    var firstName = @Html.DisplayFor(Model => Model.FirstName);
+    var lastName = @Html.DisplayFor(ModelItem => Model.LastName);
+    var state = @Html.DisplayFor(modelItem => Model.State);
+    var district = @Html.DisplayFor(ModelItem => Model.District);
 }
 
-<h2>Representative</h2>
+<h2>Representative @firstName @lastName</h2>
 
 
 <table class="table">
-
     <thead>
         <tr>
             <th>
@@ -23,25 +25,27 @@
             <th>
                 District
             </th>
-
         </tr>
     </thead>
     <tbody>
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(Model => Model.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(ModelItem => Model.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.State)
-                </td>
-                <td>
-                    @Html.DisplayFor(ModelItem => Model.District)
-                </td>
-            </tr>
-        }
+        <tr>
+            <td>
+                @firstName
+            </td>
+            <td>
+                @lastName
+            </td>
+            <td>
+                @state
+            </td>
+            <td>
+                @district
+            </td>
+        </tr>
+
+    </tbody>
+    Social Media:
+    <tbody>
+        <b>Twitter:</b> @Html.DisplayFor(ModelItem => Model.TwitterAccount)
     </tbody>
 </table>

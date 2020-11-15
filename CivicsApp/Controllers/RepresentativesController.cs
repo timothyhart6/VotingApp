@@ -33,9 +33,12 @@ namespace CivicsApp.Controllers
             return View(await _representativeService.ListRepresentativesAsync());
         }
 
-        public async Task<IActionResult> Representative(String MemberId)
+        public async Task<IActionResult> Representative(string MemberId)
         {
+            //ViewBag.Message = MemberId.Length;
+
             return View(await _representativeService.DisplayRepresentative(MemberId));
+
         }
 
         /* USED FOR DATABASE RETRIEVAL

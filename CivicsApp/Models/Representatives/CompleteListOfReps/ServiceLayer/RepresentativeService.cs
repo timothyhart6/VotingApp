@@ -12,13 +12,13 @@ namespace CivicsApp.Models
     {
         RepresentativeAdapter adapter = new RepresentativeAdapter();
 
-        public async Task<Representative> DisplayRepresentative(String MemberId)
+        public async Task<Representative> DisplayRepresentative(string MemberId)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
-            var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/"+ MemberId + ".json";
-            //var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/A000374.json";
-
+            //var RepresentativeUrl = $"https://api.propublica.org/congress/v1/members/{MemberId}.json";
+            //var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/"+ MemberId + ".json";
+            var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/A000374.json";
             var results = await httpClient.GetAsync(RepresentativeUrl);
 
             var stringResult = await results.Content.ReadAsStringAsync();
