@@ -16,6 +16,7 @@ namespace CivicsApp.Models.Representatives.SpecificRep
 
     public class SpecificRepresentative
     {
+
         [JsonProperty("status")]
         public string Status { get; set; }
 

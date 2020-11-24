@@ -29,17 +29,15 @@ namespace CivicsApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string state)
+        public IActionResult Index(string state, string district)
         {
-
-            return Redirect($"Representatives/state?state={state}");
-            //return Content($"{state}");
+            return Redirect($"Representatives/state?state={state}&district={district}");
         }
 
-        public async Task<IActionResult> Ballot(string state)
-        {
-            return View(await _representativeService.ListStateRepresentativesAsync("OH"));
-        }
+        //public async Task<IActionResult> Ballot(string state)
+        //{
+        //    return View(await _representativeService.ListStateRepresentativesAsync("OH"));
+        //}
 
         public IActionResult Privacy()
         {
