@@ -13,14 +13,32 @@ namespace CivicsApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private IRepresentativeService _representativeService;
+
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _representativeService = new RepresentativeService();
+
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(string state)
+        {
+
+            return Redirect($"Representatives/state?state={state}");
+            //return Content($"{state}");
+        }
+
+        public async Task<IActionResult> Ballot(string state)
+        {
+            return View(await _representativeService.ListStateRepresentativesAsync("OH"));
         }
 
         public IActionResult Privacy()

@@ -1,10 +1,10 @@
-﻿@model CivicsApp.Models.ListOfHouseMembers
+﻿@model CivicsApp.Models.Representatives.SpecificRep.SpecificRepresentative
 
 @{
     ViewData["Title"] = "State";
 }
 
-<h2>List of Representatives</h2>
+<h2>Representative of a State</h2>
 
 <table class="table">
 
@@ -14,10 +14,10 @@
                 @Html.DisplayNameFor(model => model.Results[0].District)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Results[0].Members[0].FirstName)
+                @Html.DisplayNameFor(model => model.Results[0].FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Results[0].Members[0].LastName)
+                @Html.DisplayNameFor(model => model.Results[0].LastName)
             </th>
         </tr>
     </thead>
@@ -29,10 +29,10 @@
                     @Html.DisplayFor(ModelItem => item.District)
                 </td>*@
                 <td>
-                    @Html.DisplayFor(ModelItem => Model.Results[0].Members[0].FirstName)
+                    @Html.DisplayFor(ModelItem => Model.Results[0].FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(ModelItem => Model.Results[0].Members[0].LastName)
+                    @Html.DisplayFor(ModelItem => Model.Results[0].LastName)
                 </td>
             </tr>
         }

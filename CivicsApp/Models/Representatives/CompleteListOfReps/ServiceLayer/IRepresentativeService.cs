@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CivicsApp.Models.Representatives.CompleteListOfReps;
+using CivicsApp.Models.Representatives.SpecificRep;
 
 namespace CivicsApp.Models
 {
@@ -11,6 +12,6 @@ namespace CivicsApp.Models
         
         public Task<List<Representative>> ListRepresentativesAsync();
 
-        public Task<ListOfHouseMembers> ListStateRepresentativesAsync(String state);
+        public Task<SpecificRepresentative> ListStateRepresentativesAsync(String state);
     }
 }

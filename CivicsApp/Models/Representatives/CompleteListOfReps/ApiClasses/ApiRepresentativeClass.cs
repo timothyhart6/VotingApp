@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-//using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace CivicsApp.Models
 {
@@ -219,8 +219,8 @@ namespace CivicsApp.Models
         //[JsonPropertyName("icpsr_id")]
         //public string IcpsrId { get; set; }
 
-        //[JsonPropertyName("twitter_account")]
-        //public string TwitterAccount { get; set; }
+        [JsonProperty("twitter_account")]
+        public string TwitterAccount { get; set; }
 
         //[JsonPropertyName("facebook_account")]
         //public string FacebookAccount { get; set; }
