@@ -52,9 +52,9 @@ namespace CivicsApp.Controllers
         */
 
         //GET: Representative/State/OH
-        public async Task<IActionResult> State(string state)
+        public async Task<IActionResult> State(string state, string district)
         {
-            return View(await _representativeService.ListStateRepresentativesAsync($"{state}"));
+            return View(await _representativeService.ListStateRepresentativesAsync($"{state}", $"{district}"));
         }
     }
 }

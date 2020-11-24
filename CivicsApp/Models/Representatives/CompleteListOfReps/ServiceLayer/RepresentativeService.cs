@@ -50,26 +50,28 @@ namespace CivicsApp.Models
             return ListOfRepresentatives;
         }
 
-        public async Task<SpecificRepresentative> ListStateRepresentativesAsync(String state)
+        public async Task<List<SpecificRepresentative>> ListStateRepresentativesAsync(string state, string district)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
-            var membersOfHouseUrl = $"https://api.propublica.org/congress/v1/members/house/{state}/15/current.json";
+            var HouseMemberUrl = $"https://api.propublica.org/congress/v1/members/house/{state}/{district}/current.json";
+            var SenateMembersUrl = $"https://api.propublica.org/congress/v1/members/senate/{state}/current.json";
+            var HouseMemberResults = await httpClient.GetAsync(HouseMemberUrl);
+            var SenateMembersResults = await httpClient.GetAsync(SenateMembersUrl);
 
-            //var membersOfHouseUrl = "https://api.propublica.org/congress/v1/116/house/members.json";
-            var results = await httpClient.GetAsync(membersOfHouseUrl);
-            var stringResult = await results.Content.ReadAsStringAsync();
-            var myDeserializedClass = JsonConvert.DeserializeObject<SpecificRepresentative>(stringResult);
+            var StringResultsForHouseMember = await HouseMemberResults.Content.ReadAsStringAsync();
+            var StringResultsForSenateMembers = await SenateMembersResults.Content.ReadAsStringAsync();
 
-            //for (int i = 0; i < myDeserializedClass.Results[0].Members.Count;)
+            List<SpecificRepresentative> StateReps = new List<SpecificRepresentative>();
 
-            //    if (myDeserializedClass.Results[0].Members[i].State != state)
-            //    {
-            //        myDeserializedClass.Results[0].Members.RemoveAt(i);
-            //    }
-            //    else { i++; }
+            var HouseMember = JsonConvert.DeserializeObject<SpecificRepresentative>(StringResultsForHouseMember);
 
-            return myDeserializedClass;
+            var Senators = JsonConvert.DeserializeObject<SpecificRepresentative>(StringResultsForSenateMembers);
+
+            StateReps.Add(HouseMember);
+            StateReps.Add(Senators);
+
+            return StateReps;
         }
     }
 }
