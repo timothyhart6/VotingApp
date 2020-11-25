@@ -1,7 +1,7 @@
 ﻿using System;
-namespace CivicsApp.Models.Representatives.SpecificRep
+namespace CivicsApp.Models.Representatives.MemberOfHouse
 {
-    public interface ISpecificRepresentative
+    public class HouseMember
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

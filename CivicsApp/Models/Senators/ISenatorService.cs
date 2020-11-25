@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CivicsApp.Models.Senators.Senator;
 
 namespace CivicsApp.Models
 {
