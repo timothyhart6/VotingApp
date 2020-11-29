@@ -16,10 +16,5 @@ namespace CivicsApp.Models.DistrictRepresentatives
             this.senator2 = senator2;
             this.houseMember = houseMember;
         }
-
-        
-
-
-
     }
 }

@@ -1,0 +1,53 @@
+﻿@model CivicsApp.Models.DistrictRepresentatives.CurrentDistrictRepresentatives
+
+@{
+    ViewData["Title"] = "Your District";
+}
+<thead>
+    <h2>Representatives for your District</h2>
+</thead>
+
+<h4>Your Represenative:</h4>
+
+<table class="table">
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone: </th>
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.houseMember.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.houseMember.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.houseMember.Phone)
+        </td>
+    </tr>
+</table>
+
+<h4>Your Senators:</h4>
+
+<table class="table">
+    <th>First Name</th>
+    <th>Last Name</th>
+    @*@foreach (var item in Model[1].Results)*@
+    @*{*@
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator1.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator1.LastName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator2.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator2.LastName)
+        </td>
+    </tr>
+    @*}*@
+</table>

@@ -14,6 +14,6 @@ namespace CivicsApp.Models
         
         public Task<List<Representative>> ListRepresentativesAsync();
 
-        public Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(String state, string district);
+        public Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipcode, string district);
     }
 }
