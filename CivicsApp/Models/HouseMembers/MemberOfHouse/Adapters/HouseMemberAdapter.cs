@@ -6,24 +6,29 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
 {
     public class HouseMemberAdapter
     {
-        public HouseMember ConvertToHouseMemeberObject(HouseMemberResult ProPublicaHouseMember, DistrictRepresentatives.Official GoogleRep)
+        public HouseMember ConvertToHouseMemeberObject(HouseMemberResult ProPublicaHouseMember, GoogleApiRepresentatives GoogleRepresentatives)
         {
             HouseMember HouseMember = new HouseMember();
+            var GoogleHouseMember = GoogleRepresentatives.Officials[4];
 
             HouseMember.FirstName = ProPublicaHouseMember.FirstName;
             HouseMember.MiddleName = ProPublicaHouseMember.MiddleName;
             HouseMember.LastName = ProPublicaHouseMember.LastName;
             HouseMember.District = ProPublicaHouseMember.District;
+            HouseMember.State = GoogleRepresentatives.NormalizedInput.State;
             HouseMember.NextElectionYear = ProPublicaHouseMember.NextElection;
-            HouseMember.OfficeAddress = new AddressModel(GoogleRep.Address[0].Line1, GoogleRep.Address[0].City, GoogleRep.Address[0].State, GoogleRep.Address[0].Zip);
-            HouseMember.Phone = GoogleRep.Phones[0];
-            HouseMember.WebSite = GoogleRep.Urls[0];
-            if (GoogleRep.Emails != null)
+            HouseMember.OfficeAddress = new AddressModel(GoogleHouseMember.Address[0].Line1,
+                                                         GoogleHouseMember.Address[0].City,
+                                                         GoogleHouseMember.Address[0].State,
+                                                         GoogleHouseMember.Address[0].Zip);
+            HouseMember.Phone = GoogleHouseMember.Phones[0];
+            HouseMember.WebSite = GoogleHouseMember.Urls[0];
+            if (GoogleHouseMember.Emails != null)
             {
-                HouseMember.Email = GoogleRep.Emails[0];
+                HouseMember.Email = GoogleHouseMember.Emails[0];
             }
 
-            foreach (Channel channel in GoogleRep.Channels)
+            foreach (Channel channel in GoogleHouseMember.Channels)
             {
                 switch(channel.Type)
                 {

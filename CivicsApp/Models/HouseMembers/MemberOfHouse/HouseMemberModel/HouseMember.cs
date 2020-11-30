@@ -9,6 +9,7 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string District { get; set; }
+        public string State { get; set; }
         public string NextElectionYear { get; set; }
         public AddressModel OfficeAddress { get; set; }
         public string Phone { get; set; }

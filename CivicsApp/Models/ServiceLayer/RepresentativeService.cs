@@ -88,7 +88,7 @@ namespace CivicsApp.Models
 
             var Senator1 = SenatorAdapter.ConvertToSenatorObject(ProPublicaSenators.Results[0]);
             var Senator2 = SenatorAdapter.ConvertToSenatorObject(ProPublicaSenators.Results[1]);
-            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(ProPublicaHouseMember.Results[0], GoogleRepresentatives.Officials[4]);
+            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(ProPublicaHouseMember.Results[0], GoogleRepresentatives);
 
             var DistrictReps = new CurrentDistrictRepresentatives(Senator1, Senator2, HouseMember);
 
