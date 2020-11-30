@@ -25,6 +25,7 @@
     <Folder Include="Models\HouseMembers\MemberOfHouse\Adapters\" />
     <Folder Include="Models\HouseMembers\MemberOfHouse\HouseMemberModel\" />
     <Folder Include="Models\ServiceLayer\" />
+    <Folder Include="Models\AddressModel\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />

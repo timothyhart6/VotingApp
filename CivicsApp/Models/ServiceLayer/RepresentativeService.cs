@@ -66,8 +66,6 @@ namespace CivicsApp.Models
             var SenateMembersUrl = $"https://api.propublica.org/congress/v1/members/senate/{state}/current.json";
             var GoogleRepresentativesUrl = $"https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCZom8UkHqmSzLcAWfnfL41vOfirikaS3w&address={address}{zipcode}";
 
-            //var GoogleRepresentativesUrl = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCZom8UkHqmSzLcAWfnfL41vOfirikaS3w&address=815 n high st";
-
             //HttpResponseMessage GoogleRepresentativesResults;
 
             //using (var request = new HttpRequestMessage(new HttpMethod("GET"), GoogleRepresentativesUrl))

@@ -125,7 +125,7 @@ namespace CivicsApp.Models.DistrictRepresentatives
         public List<int> OfficialIndices { get; set; }
     }
 
-    public class Address
+    public class GoogleAddress
     {
         [JsonProperty("line1")]
         public string Line1 { get; set; }
@@ -155,7 +155,7 @@ namespace CivicsApp.Models.DistrictRepresentatives
         public string Name { get; set; }
 
         [JsonProperty("address")]
-        public List<Address> Address { get; set; }
+        public List<GoogleAddress> Address { get; set; }
 
         [JsonProperty("party")]
         public string Party { get; set; }
