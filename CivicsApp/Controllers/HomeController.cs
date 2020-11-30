@@ -29,9 +29,9 @@ namespace CivicsApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string state, string district)
+        public IActionResult Index(string address, string city, string state, string zipcode, string district)
         {
-            return Redirect($"Representatives/state?state={state}&district={district}");
+            return Redirect($"Representatives/YourDistrict?address={address}&city={city}&state={state}&zipcode={zipcode}&district={district}");
         }
 
         //public async Task<IActionResult> Ballot(string state)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CivicsApp.Models.Senators.Senator;
 using Newtonsoft.Json;
 
 namespace CivicsApp.Models

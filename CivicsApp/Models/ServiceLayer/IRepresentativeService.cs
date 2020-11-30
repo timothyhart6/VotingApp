@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CivicsApp.Models.DistrictRepresentatives;
 using CivicsApp.Models.Representatives.CompleteListOfReps;
-using CivicsApp.Models.Representatives.SpecificRep;
+using CivicsApp.Models.Senators.Senator;
+
 
 namespace CivicsApp.Models
 {
@@ -12,6 +14,6 @@ namespace CivicsApp.Models
         
         public Task<List<Representative>> ListRepresentativesAsync();
 
-        public Task<List<SpecificRepresentative>> ListStateRepresentativesAsync(String state, string district);
+        public Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipcode, string district);
     }
 }

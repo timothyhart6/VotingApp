@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace CivicsApp.Models.Representatives.SpecificRep
+namespace CivicsApp.Models.HouseMembers.MemberOfHouse
 {
-    public class Results : ISpecificRepresentative
+    public class HouseMemberResult
     {
-
         [JsonProperty("first_name")]
         public string FirstName { get; set; }
 
+        [JsonProperty("middle_name")]
+        public string MiddleName { get; set; }
+
         [JsonProperty("last_name")]
         public string LastName { get; set; }
+
+        [JsonProperty("district")]
+        public string District { get; set; }
+
+        [JsonProperty("next_election")]
+        public string NextElection { get; set; }
     }
 
-    public class SpecificRepresentative
+    public class PropublicaApiHouseMember
     {
-
         [JsonProperty("status")]
         public string Status { get; set; }
 
@@ -24,6 +31,6 @@ namespace CivicsApp.Models.Representatives.SpecificRep
         public string Copyright { get; set; }
 
         [JsonProperty("results")]
-        public List<Results> Results { get; set; }
+        public List<HouseMemberResult> Results { get; set; }
     }
 }

@@ -1,0 +1,79 @@
+﻿@model CivicsApp.Models.DistrictRepresentatives.CurrentDistrictRepresentatives
+
+@{
+    ViewData["Title"] = "Your District";
+}
+<thead>
+    <h2>Representatives for your District</h2>
+</thead>
+
+<table class="table">
+    <tr>
+        <th>Your Congressional Representative:</th>
+        <th>
+            @Html.DisplayFor(ModelItem => Model.houseMember.FirstName)
+            @Html.DisplayFor(ModelItem => Model.houseMember.MiddleName)
+            @Html.DisplayFor(ModelItem => Model.houseMember.LastName)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            State of @Html.DisplayFor(ModelItem => Model.houseMember.State) Congressional District:
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.houseMember.District)
+        </td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>@Html.DisplayFor(ModelItem => Model.houseMember.Phone)</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>@Html.DisplayFor(ModelItem => Model.houseMember.Email)</td>
+    <tr>
+        <td>Website:</td>
+        <td><a href="@Html.DisplayFor(ModelItem => Model.houseMember.WebSite)">@Html.DisplayFor(ModelItem => Model.houseMember.WebSite)</a></td>
+    </tr>
+    <tr>
+        <td>Twitter:</td>
+        <td><a href="https://twitter.com/@Html.DisplayFor(ModelItem => Model.houseMember.Twitter)?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Html.DisplayFor(ModelItem => Model.houseMember.Twitter)</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </td>
+    </tr>
+    <tr>
+        <td>FaceBook:</td>
+        <td><a href="https://www.facebook.com/@Html.DisplayFor(ModelItem => Model.houseMember.Facebook)">Facebook Page</a></td>
+    </tr>
+    <tr>
+        <td>YouTube:</td>
+        <td><a href="https://www.youtube.com/user/@Html.DisplayFor(ModelItem => Model.houseMember.YouTube)">YouTube Channel</a></td>
+    </tr>
+
+</table>
+
+<h5>Your Senators:</h5>
+
+<table class="table">
+    <th>First Name</th>
+    <th>Last Name</th>
+    @*@foreach (var item in Model[1].Results)*@
+    @*{*@
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator1.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator1.LastName)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator2.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => Model.senator2.LastName)
+        </td>
+    </tr>
+    @*}*@
+</table>

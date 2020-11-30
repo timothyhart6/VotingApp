@@ -1,9 +1,8 @@
 ﻿using System;
-namespace CivicsApp.Models
+namespace CivicsApp.Models.Senators.Senator
 {
-    public interface ISenator
+    public class Senator
     {
-        public string State { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
