@@ -1,4 +1,5 @@
-﻿using CivicsApp.Models.DistrictRepresentatives;
+﻿using System.Threading.Tasks;
+using CivicsApp.Models.DistrictRepresentatives;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 
 
@@ -10,7 +11,6 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
         {
             HouseMember HouseMember = new HouseMember();
             var GoogleHouseMember = GoogleRepresentatives.Officials[4];
-
             HouseMember.FirstName = ProPublicaHouseMember.FirstName;
             HouseMember.MiddleName = ProPublicaHouseMember.MiddleName;
             HouseMember.LastName = ProPublicaHouseMember.LastName;
