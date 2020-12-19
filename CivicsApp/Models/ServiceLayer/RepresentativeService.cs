@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using CivicsApp.Models.DistrictRepresentatives;
 
 using CivicsApp.Models.HouseMembers.MemberOfHouse;
+using CivicsApp.Models.Representatives.MemberOfHouse;
+using CivicsApp.Models.AddressModel;
 
 namespace CivicsApp.Models
 {
@@ -70,7 +72,7 @@ namespace CivicsApp.Models
         public async Task<ProPublicaApiSenatorsForAState> FetchPropublicaSenators(HttpClient httpClient, string state)
         {
             var SenateMembersUrl = $"https://api.propublica.org/congress/v1/members/senate/{state}/current.json";
-            var SenateMembersResults = httpClient.GetAsync(SenateMembersUrl);
+            var SenateMembersResults = await httpClient.GetAsync(SenateMembersUrl);
             var StringResultsForSenateMembers = await SenateMembersResults.Content.ReadAsStringAsync();
             var ProPublicaSenators = JsonConvert.DeserializeObject<ProPublicaApiSenatorsForAState>(StringResultsForSenateMembers);
 
@@ -80,11 +82,24 @@ namespace CivicsApp.Models
         public async Task<GoogleApiRepresentatives> FetchGoogleRepresentatives(HttpClient httpClient, string address, string zipCode)
         {
             var GoogleRepresentativesUrl = $"https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCZom8UkHqmSzLcAWfnfL41vOfirikaS3w&address={address}{zipCode}";
-            var GoogleRepresentativesResults = httpClient.GetAsync(GoogleRepresentativesUrl);
-            var StringResultsForGoogleRepresentatives = GoogleRepresentativesResults.ToString();  //.Content.ReadAsStringAsync();
+            var GoogleRepresentativesResults = await httpClient.GetAsync(GoogleRepresentativesUrl);
+            var StringResultsForGoogleRepresentatives = await GoogleRepresentativesResults.Content.ReadAsStringAsync();
             var GoogleRepresentatives = JsonConvert.DeserializeObject<GoogleApiRepresentatives>(StringResultsForGoogleRepresentatives);
 
             return GoogleRepresentatives;
+        }
+
+        public async Task<HouseMember> AddAddressCoordinates(HouseMember houseMember, string address, string city, string state, string zipCode)
+        {
+            HttpClient client = new HttpClient();
+            var url = $"https://geocoding.geo.census.gov/geocoder/locations/address?street={address}&city={city}&state={state}&zip={zipCode}&benchmark=Public_AR_Census2010&format=json";
+            var results = await client.GetAsync(url);
+            var stringResults = await results.Content.ReadAsStringAsync();
+            var addressCoordinates = JsonConvert.DeserializeObject<AddressCoordinatesApiModel>(stringResults);
+            houseMember.CoordinateX = addressCoordinates.Result.AddressMatches[0].Coordinates.X;
+            houseMember.CoordinateY = addressCoordinates.Result.AddressMatches[0].Coordinates.Y;
+
+            return houseMember;
         }
 
         public async Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode, string district)
@@ -98,10 +113,11 @@ namespace CivicsApp.Models
 
             await Task.WhenAll(propublicaHouseMember, propublicaSenators, googleRepresentatives);
 
-            var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Results[0]);
-            var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Results[1]);
-            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(proPublicaHouseMember, GoogleRepresentatives);
+            var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
+            var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
+            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives.Result);
 
+            await AddAddressCoordinates(HouseMember, address, city, state, zipCode);
             var DistrictReps = new CurrentDistrictRepresentatives(Senator1, Senator2, HouseMember);
 
             return DistrictReps;
