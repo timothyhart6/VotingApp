@@ -17,7 +17,7 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
             HouseMember.District = ProPublicaHouseMember.District;
             HouseMember.State = GoogleRepresentatives.NormalizedInput.State;
             HouseMember.NextElectionYear = ProPublicaHouseMember.NextElection;
-            HouseMember.OfficeAddress = new AddressModel(GoogleHouseMember.Address[0].Line1,
+            HouseMember.OfficeAddress = new Address(GoogleHouseMember.Address[0].Line1,
                                                          GoogleHouseMember.Address[0].City,
                                                          GoogleHouseMember.Address[0].State,
                                                          GoogleHouseMember.Address[0].Zip);
