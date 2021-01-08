@@ -102,25 +102,35 @@ namespace CivicsApp.Models
             return houseMember;
         }
 
-        public async Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode, string district)
+        public string FetchCongressionalDistrict(GoogleApiRepresentatives googleApiRepresentatives)
+        {
+            var divisionId = googleApiRepresentatives.Offices[3].DivisionId;
+            string district = divisionId.Substring(divisionId.Length - 2);
+            return district;
+        }
+
+    public async Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
 
-            var propublicaHouseMember = FetchProPublicaHouseMember(httpClient, state, district);
-            var propublicaSenators = FetchPropublicaSenators(httpClient, state);
-            var googleRepresentatives = FetchGoogleRepresentatives(httpClient, address, zipCode);
+            var googleRepresentatives = await FetchGoogleRepresentatives(httpClient, address, zipCode);
+            var district = FetchCongressionalDistrict(googleRepresentatives);
 
-            await Task.WhenAll(propublicaHouseMember, propublicaSenators, googleRepresentatives);
+            var propublicaSenators = FetchPropublicaSenators(httpClient, state);
+            var propublicaHouseMember = FetchProPublicaHouseMember(httpClient, state, district);
+
+            await Task.WhenAll(propublicaHouseMember, propublicaSenators);
 
             var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
             var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
-            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives.Result);
+            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
 
             await AddAddressCoordinates(HouseMember, address, city, state, zipCode);
             var DistrictReps = new CurrentDistrictRepresentatives(Senator1, Senator2, HouseMember);
 
             return DistrictReps;
         }
+
     }
 }
