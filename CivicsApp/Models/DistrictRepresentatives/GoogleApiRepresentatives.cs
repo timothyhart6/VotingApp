@@ -33,7 +33,7 @@ namespace CivicsApp.Models.DistrictRepresentatives
     //{
     //    [JsonProperty("name")]
     //    public string Name { get; set; }
-
+    
     //    [JsonProperty("officeIndices")]
     //    public List<int> OfficeIndices { get; set; }
     //}
