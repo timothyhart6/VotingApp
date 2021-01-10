@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using CivicsApp.Models.DistrictRepresentatives;
+using CivicsApp.Models.UserDistrictRepresentatives;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 
 

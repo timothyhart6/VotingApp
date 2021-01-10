@@ -52,28 +52,4 @@
 
 </table>
 
-<h5>Your Senators:</h5>
 
-<table class="table">
-    <th>First Name</th>
-    <th>Last Name</th>
-    @*@foreach (var item in Model[1].Results)*@
-    @*{*@
-    <tr>
-        <td>
-            @Html.DisplayFor(ModelItem => Model.senator1.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(ModelItem => Model.senator1.LastName)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            @Html.DisplayFor(ModelItem => Model.senator2.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(ModelItem => Model.senator2.LastName)
-        </td>
-    </tr>
-    @*}*@
-</table>

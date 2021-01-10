@@ -28,18 +28,18 @@ namespace CivicsApp.Controllers
 
 
         // GET: /Representatives>/
-        public async Task<IActionResult> Index()
-        {
-            return View(await _representativeService.ListRepresentativesAsync());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _representativeService.ListRepresentativesAsync());
+        //}
 
-        public async Task<IActionResult> Representative(string MemberId)
-        {
-            //ViewBag.Message = MemberId.Length;
+        //public async Task<IActionResult> Representative(string MemberId)
+        //{
+        //    //ViewBag.Message = MemberId.Length;
 
-            return View(await _representativeService.DisplayRepresentative(MemberId));
+        //    return View(await _representativeService.DisplayRepresentative(MemberId));
 
-        }
+        //}
 
         /* USED FOR DATABASE RETRIEVAL
         id = 1;

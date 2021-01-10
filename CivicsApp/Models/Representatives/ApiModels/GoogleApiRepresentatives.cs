@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace CivicsApp.Models.DistrictRepresentatives
+namespace CivicsApp.Models.UserDistrictRepresentatives
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class NormalizedInput

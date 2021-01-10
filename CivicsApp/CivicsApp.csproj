@@ -9,23 +9,16 @@
     <Folder Include="Views\Representatives\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Senators\" />
-    <Folder Include="Models\HouseMembers\" />
-    <Folder Include="Models\Senators\" />
-    <Folder Include="Models\HouseMembers\CompleteListOfReps\" />
-    <Folder Include="Models\HouseMembers\MemberOfHouse\" />
-    <Folder Include="Models\HouseMembers\CompleteListOfReps\ApiClasses\" />
-    <Folder Include="Models\HouseMembers\CompleteListOfReps\Adapter\" />
-    <Folder Include="Models\DistrictRepresentatives\" />
-    <Folder Include="Models\Senators\Senator\" />
-    <Folder Include="Models\Senators\AllSenators\" />
-    <Folder Include="Models\Senators\Senator\Adapters\" />
-    <Folder Include="Models\Senators\Senator\ApiModels\" />
-    <Folder Include="Models\Senators\Senator\SenatorModel\" />
-    <Folder Include="Models\HouseMembers\MemberOfHouse\ApiModels\" />
-    <Folder Include="Models\HouseMembers\MemberOfHouse\Adapters\" />
-    <Folder Include="Models\HouseMembers\MemberOfHouse\HouseMemberModel\" />
-    <Folder Include="Models\ServiceLayer\" />
     <Folder Include="Models\Address\" />
+    <Folder Include="Models\Representatives\" />
+    <Folder Include="Models\CongressionalDistrict\" />
+    <Folder Include="Models\CongressionalDistrict\UserDistrictRepresentatives\" />
+    <Folder Include="Models\Representatives\Senators\" />
+    <Folder Include="Models\Representatives\HouseMembers\" />
+    <Folder Include="Models\Representatives\ServiceLayer\" />
+    <Folder Include="Models\Representatives\CompleteListOfReps\" />
+    <Folder Include="Models\Representatives\Senators\AllSenators\" />
+    <Folder Include="Models\Representatives\ApiModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />

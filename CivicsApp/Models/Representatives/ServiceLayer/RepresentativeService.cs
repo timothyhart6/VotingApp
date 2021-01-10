@@ -7,7 +7,7 @@ using CivicsApp.Models.Senators.Senator;
 using CivicsApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using CivicsApp.Models.DistrictRepresentatives;
+using CivicsApp.Models.UserDistrictRepresentatives;
 
 using CivicsApp.Models.HouseMembers.MemberOfHouse;
 using CivicsApp.Models.Representatives.MemberOfHouse;
@@ -26,9 +26,7 @@ namespace CivicsApp.Models
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
-            //var RepresentativeUrl = $"https://api.propublica.org/congress/v1/members/{MemberId}.json";
-            //var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/"+ MemberId + ".json";
-            var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/A000374.json";
+            var RepresentativeUrl = $"https://api.propublica.org/congress/v1/members/{MemberId}.json";
             var results = await httpClient.GetAsync(RepresentativeUrl);
 
             var stringResult = await results.Content.ReadAsStringAsync();
@@ -109,7 +107,7 @@ namespace CivicsApp.Models
             return district;
         }
 
-    public async Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
+        public async Task<DistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
@@ -117,17 +115,17 @@ namespace CivicsApp.Models
             var googleRepresentatives = await FetchGoogleRepresentatives(httpClient, address, zipCode);
             var district = FetchCongressionalDistrict(googleRepresentatives);
 
-            var propublicaSenators = FetchPropublicaSenators(httpClient, state);
+            //var propublicaSenators = FetchPropublicaSenators(httpClient, state);
             var propublicaHouseMember = FetchProPublicaHouseMember(httpClient, state, district);
 
-            await Task.WhenAll(propublicaHouseMember, propublicaSenators);
+            await Task.WhenAll(propublicaHouseMember);
 
-            var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
-            var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
+            //var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
+            //var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
             var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
 
             await AddAddressCoordinates(HouseMember, address, city, state, zipCode);
-            var DistrictReps = new CurrentDistrictRepresentatives(Senator1, Senator2, HouseMember);
+            var DistrictReps = new DistrictRepresentatives(HouseMember);
 
             return DistrictReps;
         }
