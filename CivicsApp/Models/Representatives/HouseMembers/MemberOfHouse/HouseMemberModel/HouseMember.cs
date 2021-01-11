@@ -1,8 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using CivicsApp.Models;
 
 namespace CivicsApp.Models.Representatives.MemberOfHouse
 {
+    public class BillVotingInformation
+    {
+        public string BillId { get; set; }
+        public string Description { get; set; }
+        public string BillVotingPosition { get; set; }
+        public string DateOfVote { get; set; }
+
+        public BillVotingInformation(string billId, string description, string billVotingPosition, string dateOfVote)
+        {
+            this.BillId = billId;
+            this.Description = description;
+            this.BillVotingPosition = billVotingPosition;
+            this.DateOfVote = dateOfVote;
+        }
+
+    }
+
     public class HouseMember
     {
         public string FirstName { get; set; }
@@ -20,5 +38,9 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public string WebSite { get; set; }
         public double CoordinateX { get; set; }
         public double CoordinateY { get; set; }
+        public string MemberId { get; set; }
+
+        public List<BillVotingInformation> BillVotingHistory = new List<BillVotingInformation>();
+        
     }
 }

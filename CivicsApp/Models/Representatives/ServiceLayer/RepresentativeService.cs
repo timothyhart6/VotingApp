@@ -12,6 +12,7 @@ using CivicsApp.Models.UserDistrictRepresentatives;
 using CivicsApp.Models.HouseMembers.MemberOfHouse;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 using CivicsApp.Models.AddressModel;
+using CivicsApp.Models.Representatives.ApiModels;
 
 namespace CivicsApp.Models
 {
@@ -87,6 +88,27 @@ namespace CivicsApp.Models
             return GoogleRepresentatives;
         }
 
+        public async Task<HouseMember> FetchVotingHistory(HouseMember houseMember)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
+
+            var propublicaVotingHistoryUrl = $"https://api.propublica.org/congress/v1/members/{houseMember.MemberId}/votes.json";
+            var results = await client.GetAsync(propublicaVotingHistoryUrl);
+            var stringResults = await results.Content.ReadAsStringAsync();
+            var propublicaVotingHistory = JsonConvert.DeserializeObject<PropublicaRepBillVotingPosition>(stringResults);
+            var vote = propublicaVotingHistory.Results[0].Votes;
+            //houseMember.BillVotingHistory = new List<BillVotingInformation>();
+
+            foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes)
+            {
+                houseMember.BillVotingHistory.Add(new BillVotingInformation(votingInfo.Bill.BillId, votingInfo.Description, votingInfo.Position, votingInfo.Date));
+            }
+
+
+            return houseMember;
+        }
+
         public async Task<HouseMember> AddAddressCoordinates(HouseMember houseMember, string address, string city, string state, string zipCode)
         {
             HttpClient client = new HttpClient();
@@ -122,10 +144,12 @@ namespace CivicsApp.Models
 
             //var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
             //var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
-            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
+            var houseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
 
-            await AddAddressCoordinates(HouseMember, address, city, state, zipCode);
-            var DistrictReps = new DistrictRepresentatives(HouseMember);
+
+            await AddAddressCoordinates(houseMember, address, city, state, zipCode);
+            await FetchVotingHistory(houseMember);
+            var DistrictReps = new DistrictRepresentatives(houseMember);
 
             return DistrictReps;
         }

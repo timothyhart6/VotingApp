@@ -11,6 +11,8 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
         {
             HouseMember HouseMember = new HouseMember();
             var GoogleHouseMember = GoogleRepresentatives.Officials[4];
+
+            HouseMember.MemberId = ProPublicaHouseMember.Id;
             HouseMember.FirstName = ProPublicaHouseMember.FirstName;
             HouseMember.MiddleName = ProPublicaHouseMember.MiddleName;
             HouseMember.LastName = ProPublicaHouseMember.LastName;
