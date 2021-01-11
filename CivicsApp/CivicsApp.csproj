@@ -19,6 +19,8 @@
     <Folder Include="Models\Representatives\CompleteListOfReps\" />
     <Folder Include="Models\Representatives\Senators\AllSenators\" />
     <Folder Include="Models\Representatives\ApiModels\" />
+    <Folder Include="Models\Bills\" />
+    <Folder Include="Models\Bills\ApiModels\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />

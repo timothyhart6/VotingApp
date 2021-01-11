@@ -41,6 +41,6 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public string MemberId { get; set; }
 
         public List<BillVotingInformation> BillVotingHistory = new List<BillVotingInformation>();
-        
+
     }
 }
