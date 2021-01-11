@@ -11,18 +11,16 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public string BillVotingPosition { get; set; }
         public string DateOfVote { get; set; }
 
-        public BillVotingInformation(string billId, string description, string billVotingPosition, string dateOfVote)
-        {
-            this.BillId = billId;
-            this.Description = description;
-            this.BillVotingPosition = billVotingPosition;
-            this.DateOfVote = dateOfVote;
-        }
-
     }
 
     public class HouseMember
     {
+
+        public HouseMember()
+        {
+            BillVotingHistory = new List<BillVotingInformation>();
+        }
+
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -40,7 +38,6 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public double CoordinateY { get; set; }
         public string MemberId { get; set; }
 
-        public List<BillVotingInformation> BillVotingHistory = new List<BillVotingInformation>();
-
+        public List<BillVotingInformation> BillVotingHistory { get; set; }
     }
 }

@@ -97,14 +97,19 @@ namespace CivicsApp.Models
             var results = await client.GetAsync(propublicaVotingHistoryUrl);
             var stringResults = await results.Content.ReadAsStringAsync();
             var propublicaVotingHistory = JsonConvert.DeserializeObject<PropublicaRepBillVotingPosition>(stringResults);
-            var vote = propublicaVotingHistory.Results[0].Votes;
-            //houseMember.BillVotingHistory = new List<BillVotingInformation>();
 
             foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes)
             {
-                houseMember.BillVotingHistory.Add(new BillVotingInformation(votingInfo.Bill.BillId, votingInfo.Description, votingInfo.Position, votingInfo.Date));
-            }
+                var billVotingInformation = new BillVotingInformation
+                {
+                    BillId = votingInfo.Bill.BillId,
+                    Description = votingInfo.Description,
+                    BillVotingPosition = votingInfo.Position,
+                    DateOfVote = votingInfo.Date
+                };
 
+                houseMember.BillVotingHistory.Add(billVotingInformation);
+            }
 
             return houseMember;
         }
