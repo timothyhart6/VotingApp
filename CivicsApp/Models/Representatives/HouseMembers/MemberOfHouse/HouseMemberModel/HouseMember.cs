@@ -7,15 +7,14 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
     public class BillVotingInformation
     {
         public string BillId { get; set; }
+        public string BillSlug { get; set; }
         public string Description { get; set; }
         public string BillVotingPosition { get; set; }
         public string DateOfVote { get; set; }
-
     }
 
     public class HouseMember
     {
-
         public HouseMember()
         {
             BillVotingHistory = new List<BillVotingInformation>();
@@ -41,3 +40,4 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
         public List<BillVotingInformation> BillVotingHistory { get; set; }
     }
 }
+

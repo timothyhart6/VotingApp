@@ -13,6 +13,7 @@ using CivicsApp.Models.HouseMembers.MemberOfHouse;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 using CivicsApp.Models.AddressModel;
 using CivicsApp.Models.Representatives.ApiModels;
+using System.Linq;
 
 namespace CivicsApp.Models
 {
@@ -98,11 +99,16 @@ namespace CivicsApp.Models
             var stringResults = await results.Content.ReadAsStringAsync();
             var propublicaVotingHistory = JsonConvert.DeserializeObject<PropublicaRepBillVotingPosition>(stringResults);
 
-            foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes)
+            //foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes )
+            for (int i = 0; i < propublicaVotingHistory.Results[0].Votes.Count; i++)
             {
+                var votingInfo = propublicaVotingHistory.Results[0].Votes[i];
+                var s = "";
+                    s= votingInfo.Bill.BillId.Split("-")[0];
                 var billVotingInformation = new BillVotingInformation
                 {
                     BillId = votingInfo.Bill.BillId,
+                    BillSlug = s,
                     Description = votingInfo.Description,
                     BillVotingPosition = votingInfo.Position,
                     DateOfVote = votingInfo.Date
@@ -110,7 +116,6 @@ namespace CivicsApp.Models
 
                 houseMember.BillVotingHistory.Add(billVotingInformation);
             }
-
             return houseMember;
         }
 
@@ -133,6 +138,13 @@ namespace CivicsApp.Models
             string district = divisionId.Substring(divisionId.Length - 2);
             return district;
         }
+
+        //public string FetchBillDetails()
+        //{
+        //    HttpClient client = new HttpClient();
+        //    var url = 
+        //    return null;
+        //}
 
         public async Task<DistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
         {

@@ -1,4 +1,4 @@
-﻿@model CivicsApp.Models.DistrictRepresentatives.CurrentDistrictRepresentatives
+﻿@model CivicsApp.Models.UserDistrictRepresentatives.DistrictRepresentatives
 
 @{
     ViewData["Title"] = "Your District";
@@ -37,8 +37,9 @@
     </tr>
     <tr>
         <td>Twitter:</td>
-        <td><a href="https://twitter.com/@Html.DisplayFor(ModelItem => Model.houseMember.Twitter)?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Html.DisplayFor(ModelItem => Model.houseMember.Twitter)</a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <td>
+            <a href="https://twitter.com/@Html.DisplayFor(ModelItem => Model.houseMember.Twitter)?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Html.DisplayFor(ModelItem => Model.houseMember.Twitter)</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </td>
     </tr>
     <tr>
@@ -49,6 +50,48 @@
         <td>YouTube:</td>
         <td><a href="https://www.youtube.com/user/@Html.DisplayFor(ModelItem => Model.houseMember.YouTube)">YouTube Channel</a></td>
     </tr>
+
+</table>
+
+
+@*<tbody>
+        @foreach (var VotingInfo in Model.houseMember.BillVotingHistory)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => VotingInfo.BillId)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => VotingInfo.BillVotingPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => VotingInfo.Description)
+                </td>
+            </tr>
+        }
+    </tbody>*@
+
+<table style="width:100%">
+    <tr>
+        <th width="15%">Voting Position</th>
+        <th width="15%">Date of Vote</th>
+        <th width="70%">Bill Description</th>
+    </tr>
+
+    @foreach (var VotingInfo in Model.houseMember.BillVotingHistory)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => VotingInfo.BillVotingPosition)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => VotingInfo.DateOfVote)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => VotingInfo.Description)
+            </td>
+        </tr>
+    }
 
 </table>
 
