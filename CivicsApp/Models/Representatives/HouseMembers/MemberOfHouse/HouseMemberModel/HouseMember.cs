@@ -7,6 +7,7 @@ namespace CivicsApp.Models.Representatives.MemberOfHouse
     public class BillVotingInformation
     {
         public string BillId { get; set; }
+        public string BillNumber { get; set; }
         public string BillSlug { get; set; }
         public string Description { get; set; }
         public string BillVotingPosition { get; set; }

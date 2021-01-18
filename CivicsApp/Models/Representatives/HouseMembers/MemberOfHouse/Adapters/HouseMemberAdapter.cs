@@ -29,20 +29,22 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
             {
                 HouseMember.Email = GoogleHouseMember.Emails[0];
             }
-
-            foreach (Channel channel in GoogleHouseMember.Channels)
+            if (GoogleHouseMember.Channels != null)
             {
-                switch(channel.Type)
+                foreach (Channel channel in GoogleHouseMember.Channels)
                 {
-                    case "Facebook":
-                        HouseMember.Facebook = channel.Id;
-                        break;
-                    case "Twitter":
-                        HouseMember.Twitter = channel.Id;
-                        break;
-                    case "YouTube":
-                        HouseMember.YouTube = channel.Id;
-                        break;
+                    switch (channel.Type)
+                    {
+                        case "Facebook":
+                            HouseMember.Facebook = channel.Id;
+                            break;
+                        case "Twitter":
+                            HouseMember.Twitter = channel.Id;
+                            break;
+                        case "YouTube":
+                            HouseMember.YouTube = channel.Id;
+                            break;
+                    }
                 }
             }
 

@@ -4,7 +4,6 @@ namespace CivicsApp.Models.Bills
     public class BillDetails
     {
         public string BillId { get; set; }
-        public string BillName { get; set; }
         public string BillNumber { get; set; }
         public string BillTitle { get; set; }
         public string IntroducedDate { get; set; }

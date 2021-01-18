@@ -14,6 +14,8 @@ using CivicsApp.Models.Representatives.MemberOfHouse;
 using CivicsApp.Models.AddressModel;
 using CivicsApp.Models.Representatives.ApiModels;
 using System.Linq;
+using CivicsApp.Models.Bills;
+using CivicsApp.Models.Bills.ApiModels;
 
 namespace CivicsApp.Models
 {
@@ -98,24 +100,30 @@ namespace CivicsApp.Models
             var results = await client.GetAsync(propublicaVotingHistoryUrl);
             var stringResults = await results.Content.ReadAsStringAsync();
             var propublicaVotingHistory = JsonConvert.DeserializeObject<PropublicaRepBillVotingPosition>(stringResults);
-
-            //foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes )
-            for (int i = 0; i < propublicaVotingHistory.Results[0].Votes.Count; i++)
+            var dictionary = new Dictionary<string, BillVotingInformation>();
+            foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes)
             {
-                var votingInfo = propublicaVotingHistory.Results[0].Votes[i];
-                var s = "";
-                    s= votingInfo.Bill.BillId.Split("-")[0];
-                var billVotingInformation = new BillVotingInformation
+                if (votingInfo.Bill.BillId != null)
                 {
-                    BillId = votingInfo.Bill.BillId,
-                    BillSlug = s,
-                    Description = votingInfo.Description,
-                    BillVotingPosition = votingInfo.Position,
-                    DateOfVote = votingInfo.Date
-                };
+                    var billVotingInformation = new BillVotingInformation
+                    {
+                        BillId = votingInfo.Bill.BillId,
+                        BillNumber = votingInfo.Bill.Number,
+                        BillSlug = votingInfo.Bill.BillId.Split('-')[0],
+                        Description = votingInfo.Description,
+                        BillVotingPosition = votingInfo.Position,
+                        DateOfVote = votingInfo.Date
+                    };
 
-                houseMember.BillVotingHistory.Add(billVotingInformation);
+                    if (dictionary.ContainsKey(votingInfo.Bill.BillId) == false)
+                    {
+                        dictionary.Add(votingInfo.Bill.BillId, billVotingInformation);
+                    }
+                }
             }
+
+            houseMember.BillVotingHistory.AddRange(dictionary.Values);
+
             return houseMember;
         }
 
@@ -139,11 +147,33 @@ namespace CivicsApp.Models
             return district;
         }
 
-        //public string FetchBillDetails()
+        //public async Task<BillDetails> FetchBillDetailsAsync(BillVotingInformation billVotingInformation)
         //{
+        //    var billSlug = billVotingInformation.BillId.Split("-")[0];
+
         //    HttpClient client = new HttpClient();
-        //    var url = 
-        //    return null;
+        //    var url = $"https://api.propublica.org/congress/v1/116/bills/{billSlug}.json";
+        //    var results = await client.GetAsync(url);
+        //    var stringResults = await results.Content.ReadAsStringAsync();
+        //    var propublicaBillDetails = JsonConvert.DeserializeObject<PropublicaBillDetails>(stringResults); //todo change to api class then add to object
+        //    var billDetails = new BillDetails
+        //    {
+        //        BillId = propublicaBillDetails.Results[0].BillId,
+        //        BillNumber = propublicaBillDetails.Results[0].Number,
+        //        BillTitle = propublicaBillDetails.Results[0].Title,
+        //        IntroducedDate = propublicaBillDetails.Results[0].IntroducedDate,
+        //        HousePassage = propublicaBillDetails.Results[0].HousePassage,
+        //        SenatePassage = propublicaBillDetails.Results[0].SenatePassage,
+        //        Enacted = propublicaBillDetails.Results[0].Enacted,
+        //        Vetoed = propublicaBillDetails.Results[0].Vetoed,
+        //        SummaryShort = propublicaBillDetails.Results[0].SummaryShort,
+        //        Summary = propublicaBillDetails.Results[0].Summary,
+        //        CongressdotgovUrl = propublicaBillDetails.Results[0].CongressdotgovUrl,
+        //        GovtrackUrl = propublicaBillDetails.Results[0].GovtrackUrl,
+        //        BillUri = propublicaBillDetails.Results[0].BillUri
+        //    };
+
+        //    return billDetails;
         //}
 
         public async Task<DistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)

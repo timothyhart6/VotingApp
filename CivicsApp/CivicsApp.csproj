@@ -21,6 +21,8 @@
     <Folder Include="Models\Representatives\ApiModels\" />
     <Folder Include="Models\Bills\" />
     <Folder Include="Models\Bills\ApiModels\" />
+    <Folder Include="Views\Bill\" />
+    <Folder Include="Models\Bills\ServiceLayer\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />

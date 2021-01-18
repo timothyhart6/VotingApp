@@ -73,14 +73,18 @@
 
 <table style="width:100%">
     <tr>
-        <th width="15%">Voting Position</th>
-        <th width="15%">Date of Vote</th>
+        <th width="10%">Bill Number</th>
+        <th width="10%">Voting Position</th>
+        <th width="10%">Date of Vote</th>
         <th width="70%">Bill Description</th>
     </tr>
 
     @foreach (var VotingInfo in Model.houseMember.BillVotingHistory)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => VotingInfo.BillNumber)
+            </td>
             <td>
                 @Html.DisplayFor(ModelItem => VotingInfo.BillVotingPosition)
             </td>
