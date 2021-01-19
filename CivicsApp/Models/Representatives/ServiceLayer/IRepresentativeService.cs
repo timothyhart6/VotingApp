@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CivicsApp.Models.DistrictRepresentatives;
+using CivicsApp.Models.UserDistrictRepresentatives;
 using CivicsApp.Models.Representatives.CompleteListOfReps;
 using CivicsApp.Models.Senators.Senator;
 
@@ -14,6 +14,6 @@ namespace CivicsApp.Models
         
         public Task<List<Representative>> ListRepresentativesAsync();
 
-        public Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipcode);
+        public Task<DistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipcode);
     }
 }

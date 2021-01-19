@@ -7,11 +7,15 @@ using CivicsApp.Models.Senators.Senator;
 using CivicsApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using CivicsApp.Models.DistrictRepresentatives;
+using CivicsApp.Models.UserDistrictRepresentatives;
 
 using CivicsApp.Models.HouseMembers.MemberOfHouse;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 using CivicsApp.Models.AddressModel;
+using CivicsApp.Models.Representatives.ApiModels;
+using System.Linq;
+using CivicsApp.Models.Bills;
+using CivicsApp.Models.Bills.ApiModels;
 
 namespace CivicsApp.Models
 {
@@ -26,9 +30,7 @@ namespace CivicsApp.Models
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
-            //var RepresentativeUrl = $"https://api.propublica.org/congress/v1/members/{MemberId}.json";
-            //var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/"+ MemberId + ".json";
-            var RepresentativeUrl = "https://api.propublica.org/congress/v1/members/A000374.json";
+            var RepresentativeUrl = $"https://api.propublica.org/congress/v1/members/{MemberId}.json";
             var results = await httpClient.GetAsync(RepresentativeUrl);
 
             var stringResult = await results.Content.ReadAsStringAsync();
@@ -89,6 +91,42 @@ namespace CivicsApp.Models
             return GoogleRepresentatives;
         }
 
+        public async Task<HouseMember> FetchVotingHistory(HouseMember houseMember)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
+
+            var propublicaVotingHistoryUrl = $"https://api.propublica.org/congress/v1/members/{houseMember.MemberId}/votes.json";
+            var results = await client.GetAsync(propublicaVotingHistoryUrl);
+            var stringResults = await results.Content.ReadAsStringAsync();
+            var propublicaVotingHistory = JsonConvert.DeserializeObject<PropublicaRepBillVotingPosition>(stringResults);
+            var dictionary = new Dictionary<string, BillVotingInformation>();
+            foreach (Vote votingInfo in propublicaVotingHistory.Results[0].Votes)
+            {
+                if (votingInfo.Bill.BillId != null)
+                {
+                    var billVotingInformation = new BillVotingInformation
+                    {
+                        BillId = votingInfo.Bill.BillId,
+                        BillNumber = votingInfo.Bill.Number,
+                        BillSlug = votingInfo.Bill.BillId.Split('-')[0],
+                        Description = votingInfo.Description,
+                        BillVotingPosition = votingInfo.Position,
+                        DateOfVote = votingInfo.Date
+                    };
+
+                    if (dictionary.ContainsKey(votingInfo.Bill.BillId) == false)
+                    {
+                        dictionary.Add(votingInfo.Bill.BillId, billVotingInformation);
+                    }
+                }
+            }
+
+            houseMember.BillVotingHistory.AddRange(dictionary.Values);
+
+            return houseMember;
+        }
+
         public async Task<HouseMember> AddAddressCoordinates(HouseMember houseMember, string address, string city, string state, string zipCode)
         {
             HttpClient client = new HttpClient();
@@ -109,7 +147,36 @@ namespace CivicsApp.Models
             return district;
         }
 
-    public async Task<CurrentDistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
+        //public async Task<BillDetails> FetchBillDetailsAsync(BillVotingInformation billVotingInformation)
+        //{
+        //    var billSlug = billVotingInformation.BillId.Split("-")[0];
+
+        //    HttpClient client = new HttpClient();
+        //    var url = $"https://api.propublica.org/congress/v1/116/bills/{billSlug}.json";
+        //    var results = await client.GetAsync(url);
+        //    var stringResults = await results.Content.ReadAsStringAsync();
+        //    var propublicaBillDetails = JsonConvert.DeserializeObject<PropublicaBillDetails>(stringResults); //todo change to api class then add to object
+        //    var billDetails = new BillDetails
+        //    {
+        //        BillId = propublicaBillDetails.Results[0].BillId,
+        //        BillNumber = propublicaBillDetails.Results[0].Number,
+        //        BillTitle = propublicaBillDetails.Results[0].Title,
+        //        IntroducedDate = propublicaBillDetails.Results[0].IntroducedDate,
+        //        HousePassage = propublicaBillDetails.Results[0].HousePassage,
+        //        SenatePassage = propublicaBillDetails.Results[0].SenatePassage,
+        //        Enacted = propublicaBillDetails.Results[0].Enacted,
+        //        Vetoed = propublicaBillDetails.Results[0].Vetoed,
+        //        SummaryShort = propublicaBillDetails.Results[0].SummaryShort,
+        //        Summary = propublicaBillDetails.Results[0].Summary,
+        //        CongressdotgovUrl = propublicaBillDetails.Results[0].CongressdotgovUrl,
+        //        GovtrackUrl = propublicaBillDetails.Results[0].GovtrackUrl,
+        //        BillUri = propublicaBillDetails.Results[0].BillUri
+        //    };
+
+        //    return billDetails;
+        //}
+
+        public async Task<DistrictRepresentatives> ListStateRepresentativesAsync(string address, string city, string state, string zipCode)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
@@ -117,17 +184,19 @@ namespace CivicsApp.Models
             var googleRepresentatives = await FetchGoogleRepresentatives(httpClient, address, zipCode);
             var district = FetchCongressionalDistrict(googleRepresentatives);
 
-            var propublicaSenators = FetchPropublicaSenators(httpClient, state);
+            //var propublicaSenators = FetchPropublicaSenators(httpClient, state);
             var propublicaHouseMember = FetchProPublicaHouseMember(httpClient, state, district);
 
-            await Task.WhenAll(propublicaHouseMember, propublicaSenators);
+            await Task.WhenAll(propublicaHouseMember);
 
-            var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
-            var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
-            var HouseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
+            //var Senator1 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[0]);
+            //var Senator2 = SenatorAdapter.ConvertToSenatorObject(propublicaSenators.Result.Results[1]);
+            var houseMember = HouseMemberAdapter.ConvertToHouseMemeberObject(propublicaHouseMember.Result, googleRepresentatives);
 
-            await AddAddressCoordinates(HouseMember, address, city, state, zipCode);
-            var DistrictReps = new CurrentDistrictRepresentatives(Senator1, Senator2, HouseMember);
+
+            await AddAddressCoordinates(houseMember, address, city, state, zipCode);
+            await FetchVotingHistory(houseMember);
+            var DistrictReps = new DistrictRepresentatives(houseMember);
 
             return DistrictReps;
         }

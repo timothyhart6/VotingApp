@@ -1,0 +1,78 @@
+﻿
+@model CivicsApp.Models.Bills.BillDetails
+
+@{
+    ViewData["Title"] = "Bill";
+}
+
+<h1>Details for @Html.DisplayFor(ModelItem => Model.BillNumber) </h1>
+
+<table class="table">
+    <tr>
+        Bill ID:
+        @Html.DisplayFor(ModelItem => Model.BillId)
+        <br />
+    </tr>
+    <tr>
+        Bill Number:
+        @Html.DisplayFor(ModelItem => Model.BillNumber)
+        <br />
+    </tr>
+    <tr>
+        bill Title:
+        @Html.DisplayFor(ModelItem => Model.BillTitle)
+        <br />
+    </tr>
+    <tr>
+        Date the Bill was introduced:
+        @Html.DisplayFor(ModelItem => Model.IntroducedDate)
+        <br />
+    </tr>
+    <tr>
+        Did the Bill pass the House?
+        @Html.DisplayFor(ModelItem => Model.HousePassage)
+        <br />
+    </tr>
+    <tr>
+        Did the Bill pass the senate?
+        @Html.DisplayFor(ModelItem => Model.SenatePassage)
+        <br />
+    </tr>
+    <tr>
+        Is the Bill Enacted?
+        @Html.DisplayFor(ModelItem => Model.Enacted)
+        <br />
+    </tr>
+    <tr>
+        Was the Bill Vetoed?
+        @Html.DisplayFor(ModelItem => Model.Vetoed)
+        <br />
+    </tr>
+    <tr>
+        Short Summary of the Bill:
+        <p>@Html.DisplayFor(ModelItem => Model.SummaryShort)</p>
+        <br />
+    </tr>
+    <tr>
+        Full Summary of the Bill:
+        <p>@Html.DisplayFor(ModelItem => Model.Summary)</p>
+        <br />
+    </tr>
+    <tr>
+        <a href="@Html.DisplayFor(ModelItem => Model.CongressdotgovUrl)">URL for Congress.gov summary of the bill</a>
+        <br />
+    </tr>
+    <tr>
+        <a href="@Html.DisplayFor(ModelItem => Model.GovtrackUrl)">URL for GovTrack.us summary of the bill</a>
+        <br />
+    </tr>
+    <tr>
+        URI of the Bill:
+        @Html.DisplayFor(ModelItem => Model.BillUri)
+        <br />
+    </tr>
+
+</table>
+
+
+

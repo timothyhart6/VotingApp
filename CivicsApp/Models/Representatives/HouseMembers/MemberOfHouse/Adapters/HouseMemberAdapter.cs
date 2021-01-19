@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using CivicsApp.Models.DistrictRepresentatives;
+using CivicsApp.Models.UserDistrictRepresentatives;
 using CivicsApp.Models.Representatives.MemberOfHouse;
 
 
@@ -11,6 +11,8 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
         {
             HouseMember HouseMember = new HouseMember();
             var GoogleHouseMember = GoogleRepresentatives.Officials[4];
+
+            HouseMember.MemberId = ProPublicaHouseMember.Id;
             HouseMember.FirstName = ProPublicaHouseMember.FirstName;
             HouseMember.MiddleName = ProPublicaHouseMember.MiddleName;
             HouseMember.LastName = ProPublicaHouseMember.LastName;
@@ -27,20 +29,22 @@ namespace CivicsApp.Models.HouseMembers.MemberOfHouse
             {
                 HouseMember.Email = GoogleHouseMember.Emails[0];
             }
-
-            foreach (Channel channel in GoogleHouseMember.Channels)
+            if (GoogleHouseMember.Channels != null)
             {
-                switch(channel.Type)
+                foreach (Channel channel in GoogleHouseMember.Channels)
                 {
-                    case "Facebook":
-                        HouseMember.Facebook = channel.Id;
-                        break;
-                    case "Twitter":
-                        HouseMember.Twitter = channel.Id;
-                        break;
-                    case "YouTube":
-                        HouseMember.YouTube = channel.Id;
-                        break;
+                    switch (channel.Type)
+                    {
+                        case "Facebook":
+                            HouseMember.Facebook = channel.Id;
+                            break;
+                        case "Twitter":
+                            HouseMember.Twitter = channel.Id;
+                            break;
+                        case "YouTube":
+                            HouseMember.YouTube = channel.Id;
+                            break;
+                    }
                 }
             }
 
