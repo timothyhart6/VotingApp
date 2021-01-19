@@ -83,7 +83,9 @@
     {
         <tr>
             <td>
+                <a href="/Bill?billslug=@Html.DisplayFor(ModelItem => VotingInfo.BillSlug)">
                 @Html.DisplayFor(ModelItem => VotingInfo.BillNumber)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(ModelItem => VotingInfo.BillVotingPosition)

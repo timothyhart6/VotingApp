@@ -18,7 +18,7 @@ namespace CivicsApp.Controllers
         }
 
         // GET: /<controller>/
-        public async Task<IActionResult> IndexAsync(string billSlug)
+        public async Task<IActionResult> Index(string billSlug)
         {
             return View(await billService.FetchBillDetailsAsync(billSlug));
         }

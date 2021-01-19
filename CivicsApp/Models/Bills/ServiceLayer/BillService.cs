@@ -13,11 +13,10 @@ namespace CivicsApp.Models.Bills.ServiceLayer
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
 
-            var url = "https://api.propublica.org/congress/v1/116/bills/hres24.json";
-            //var url = $"https://api.propublica.org/congress/v1/116/bills/{billSlug}.json";
+            var url = $"https://api.propublica.org/congress/v1/116/bills/{billSlug}.json";
             var results = await client.GetAsync(url);
             var stringResults = await results.Content.ReadAsStringAsync();
-            var propublicaBillDetails = JsonConvert.DeserializeObject<PropublicaBillDetails>(stringResults); //todo change to api class then add to object
+            var propublicaBillDetails = JsonConvert.DeserializeObject<PropublicaBillDetails>(stringResults);
             var billDetails = new BillDetails
             {
                 BillId = propublicaBillDetails.Results[0].BillId,

@@ -1,192 +1,184 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace CivicsApp.Models.Bills.ApiModels
 {
-    public class CosponsorsByParty
-    {
-        [JsonPropertyName("D")]
-        public int D { get; set; }
-
-        [JsonPropertyName("R")]
-        public int R { get; set; }
-    }
-
     public class Version
     {
-        [JsonPropertyName("status")]
+        [JsonProperty("status")]
         public string Status { get; set; }
 
-        [JsonPropertyName("title")]
+        [JsonProperty("title")]
         public string Title { get; set; }
 
-        [JsonPropertyName("url")]
+        [JsonProperty("url")]
         public string Url { get; set; }
 
-        [JsonPropertyName("congressdotgov_url")]
+        [JsonProperty("congressdotgov_url")]
         public string CongressdotgovUrl { get; set; }
     }
 
     public class Action
     {
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("chamber")]
+        [JsonProperty("chamber")]
         public string Chamber { get; set; }
 
-        [JsonPropertyName("action_type")]
+        [JsonProperty("action_type")]
         public string ActionType { get; set; }
 
-        [JsonPropertyName("datetime")]
+        [JsonProperty("datetime")]
         public string Datetime { get; set; }
 
-        [JsonPropertyName("description")]
+        [JsonProperty("description")]
         public string Description { get; set; }
     }
 
     public class Result
     {
-        [JsonPropertyName("bill_id")]
+        [JsonProperty("bill_id")]
         public string BillId { get; set; }
 
-        [JsonPropertyName("bill_slug")]
+        [JsonProperty("bill_slug")]
         public string BillSlug { get; set; }
 
-        [JsonPropertyName("congress")]
+        [JsonProperty("congress")]
         public string Congress { get; set; }
 
-        [JsonPropertyName("bill")]
+        [JsonProperty("bill")]
         public string Bill { get; set; }
 
-        [JsonPropertyName("bill_type")]
+        [JsonProperty("bill_type")]
         public string BillType { get; set; }
 
-        [JsonPropertyName("number")]
+        [JsonProperty("number")]
         public string Number { get; set; }
 
-        [JsonPropertyName("bill_uri")]
+        [JsonProperty("bill_uri")]
         public string BillUri { get; set; }
 
-        [JsonPropertyName("title")]
+        [JsonProperty("title")]
         public string Title { get; set; }
 
-        [JsonPropertyName("short_title")]
+        [JsonProperty("short_title")]
         public string ShortTitle { get; set; }
 
-        [JsonPropertyName("sponsor_title")]
+        [JsonProperty("sponsor_title")]
         public string SponsorTitle { get; set; }
 
-        [JsonPropertyName("sponsor")]
+        [JsonProperty("sponsor")]
         public string Sponsor { get; set; }
 
-        [JsonPropertyName("sponsor_id")]
+        [JsonProperty("sponsor_id")]
         public string SponsorId { get; set; }
 
-        [JsonPropertyName("sponsor_uri")]
+        [JsonProperty("sponsor_uri")]
         public string SponsorUri { get; set; }
 
-        [JsonPropertyName("sponsor_party")]
+        [JsonProperty("sponsor_party")]
         public string SponsorParty { get; set; }
 
-        [JsonPropertyName("sponsor_state")]
+        [JsonProperty("sponsor_state")]
         public string SponsorState { get; set; }
 
-        [JsonPropertyName("gpo_pdf_uri")]
+        [JsonProperty("gpo_pdf_uri")]
         public object GpoPdfUri { get; set; }
 
-        [JsonPropertyName("congressdotgov_url")]
+        [JsonProperty("congressdotgov_url")]
         public string CongressdotgovUrl { get; set; }
 
-        [JsonPropertyName("govtrack_url")]
+        [JsonProperty("govtrack_url")]
         public string GovtrackUrl { get; set; }
 
-        [JsonPropertyName("introduced_date")]
+        [JsonProperty("introduced_date")]
         public string IntroducedDate { get; set; }
 
-        [JsonPropertyName("active")]
+        [JsonProperty("active")]
         public bool Active { get; set; }
 
-        [JsonPropertyName("last_vote")]
+        [JsonProperty("last_vote")]
         public object LastVote { get; set; }
 
-        [JsonPropertyName("house_passage")]
-        public object HousePassage { get; set; }
+        [JsonProperty("house_passage")]
+        public string HousePassage { get; set; }
 
-        [JsonPropertyName("senate_passage")]
+        [JsonProperty("senate_passage")]
         public object SenatePassage { get; set; }
 
-        [JsonPropertyName("enacted")]
+        [JsonProperty("enacted")]
         public object Enacted { get; set; }
 
-        [JsonPropertyName("vetoed")]
+        [JsonProperty("vetoed")]
         public object Vetoed { get; set; }
 
-        [JsonPropertyName("cosponsors")]
+        [JsonProperty("cosponsors")]
         public int Cosponsors { get; set; }
 
-        [JsonPropertyName("cosponsors_by_party")]
-        public CosponsorsByParty CosponsorsByParty { get; set; }
+        [JsonProperty("cosponsors_by_party")]
+        public object CosponsorsByParty { get; set; }
 
-        [JsonPropertyName("withdrawn_cosponsors")]
+        [JsonProperty("withdrawn_cosponsors")]
         public int WithdrawnCosponsors { get; set; }
 
-        [JsonPropertyName("primary_subject")]
+        [JsonProperty("primary_subject")]
         public string PrimarySubject { get; set; }
 
-        [JsonPropertyName("committees")]
+        [JsonProperty("committees")]
         public string Committees { get; set; }
 
-        [JsonPropertyName("committee_codes")]
-        public List<string> CommitteeCodes { get; set; }
+        [JsonProperty("committee_codes")]
+        public List<object> CommitteeCodes { get; set; }
 
-        [JsonPropertyName("subcommittee_codes")]
-        public List<string> SubcommitteeCodes { get; set; }
+        [JsonProperty("subcommittee_codes")]
+        public List<object> SubcommitteeCodes { get; set; }
 
-        [JsonPropertyName("latest_major_action_date")]
+        [JsonProperty("latest_major_action_date")]
         public string LatestMajorActionDate { get; set; }
 
-        [JsonPropertyName("latest_major_action")]
+        [JsonProperty("latest_major_action")]
         public string LatestMajorAction { get; set; }
 
-        [JsonPropertyName("house_passage_vote")]
-        public object HousePassageVote { get; set; }
+        [JsonProperty("house_passage_vote")]
+        public string HousePassageVote { get; set; }
 
-        [JsonPropertyName("senate_passage_vote")]
+        [JsonProperty("senate_passage_vote")]
         public object SenatePassageVote { get; set; }
 
-        [JsonPropertyName("summary")]
+        [JsonProperty("summary")]
         public string Summary { get; set; }
 
-        [JsonPropertyName("summary_short")]
+        [JsonProperty("summary_short")]
         public string SummaryShort { get; set; }
 
-        [JsonPropertyName("cbo_estimate_url")]
+        [JsonProperty("cbo_estimate_url")]
         public object CboEstimateUrl { get; set; }
 
-        [JsonPropertyName("versions")]
+        [JsonProperty("versions")]
         public List<Version> Versions { get; set; }
 
-        [JsonPropertyName("actions")]
+        [JsonProperty("actions")]
         public List<Action> Actions { get; set; }
 
-        [JsonPropertyName("presidential_statements")]
+        [JsonProperty("presidential_statements")]
         public List<object> PresidentialStatements { get; set; }
 
-        [JsonPropertyName("votes")]
+        [JsonProperty("votes")]
         public List<object> Votes { get; set; }
     }
 
     public class PropublicaBillDetails
     {
-        [JsonPropertyName("status")]
+        [JsonProperty("status")]
         public string Status { get; set; }
 
-        [JsonPropertyName("copyright")]
+        [JsonProperty("copyright")]
         public string Copyright { get; set; }
 
-        [JsonPropertyName("results")]
+        [JsonProperty("results")]
         public List<Result> Results { get; set; }
     }
 
