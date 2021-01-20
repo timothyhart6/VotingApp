@@ -5,30 +5,81 @@
     ViewData["Title"] = "Bill";
 }
 
-<h1>Details for @Html.DisplayFor(ModelItem => Model.BillNumber) </h1>
+<body>
+    <h3>Bill @Html.DisplayFor(ModelItem => Model.BillNumber)</h3>
 
+    <h5>@Html.DisplayFor(ModelItem => Model.BillTitle) <br /></h5>
+
+    <table class="table" wddth="25%">
+        <tr>
+            <td>
+                Date Bill was introduced:
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => Model.IntroducedDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Has the Bill been enacted?
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => Model.Enacted)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Was the Bill Vetoed?
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => Model.Vetoed)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date the Bill passed the House:
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => Model.HousePassage)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date the Bill passed the Senate:
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => Model.SenatePassage)
+            </td>
+        </tr>
+    </table>
+    @*<p>Introduced on @Html.DisplayFor(ModelItem => Model.IntroducedDate)</p>*@
+
+    <h6>Summary of Bill @Html.DisplayFor(ModelItem => Model.BillNumber):</h6>
+    <p>&emsp;&emsp;@Html.DisplayFor(ModelItem => Model.Summary)</p>
+
+</body>
 <table class="table">
-    <tr>
+    @*<tr>
         Bill ID:
         @Html.DisplayFor(ModelItem => Model.BillId)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Bill Number:
         @Html.DisplayFor(ModelItem => Model.BillNumber)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         bill Title:
         @Html.DisplayFor(ModelItem => Model.BillTitle)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Date the Bill was introduced:
         @Html.DisplayFor(ModelItem => Model.IntroducedDate)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Did the Bill pass the House?
         @Html.DisplayFor(ModelItem => Model.HousePassage)
         <br />
@@ -37,8 +88,8 @@
         Did the Bill pass the senate?
         @Html.DisplayFor(ModelItem => Model.SenatePassage)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Is the Bill Enacted?
         @Html.DisplayFor(ModelItem => Model.Enacted)
         <br />
@@ -47,17 +98,17 @@
         Was the Bill Vetoed?
         @Html.DisplayFor(ModelItem => Model.Vetoed)
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Short Summary of the Bill:
         <p>@Html.DisplayFor(ModelItem => Model.SummaryShort)</p>
         <br />
-    </tr>
-    <tr>
+    </tr>*@
+    @*<tr>
         Full Summary of the Bill:
         <p>@Html.DisplayFor(ModelItem => Model.Summary)</p>
         <br />
-    </tr>
+    </tr>*@
     <tr>
         <a href="@Html.DisplayFor(ModelItem => Model.CongressdotgovUrl)">URL for Congress.gov summary of the bill</a>
         <br />

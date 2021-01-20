@@ -1,19 +1,18 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using CivicsApp.Models.Bills.ApiModels;
 using Newtonsoft.Json;
 
 namespace CivicsApp.Models.Bills.ServiceLayer
 {
-    public class BillService
+    public class BillService : IBillService
     {
         public async Task<BillDetails> FetchBillDetailsAsync(string billSlug)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-API-Key", "hxY9fxmPmO7Ev1UT6KUlbYaPVKM5v619B2DWRjIY");
 
-            var url = $"https://api.propublica.org/congress/v1/116/bills/{billSlug}.json";
+            var url = $"https://api.propublica.org/congress/v1/117/bills/{billSlug}.json";
             var results = await client.GetAsync(url);
             var stringResults = await results.Content.ReadAsStringAsync();
             var propublicaBillDetails = JsonConvert.DeserializeObject<PropublicaBillDetails>(stringResults);
